@@ -4,20 +4,60 @@ public class ProjectVO {
 	private String id;
 	private String pwd;
 	private String kind;
+	private String title;
+	private String content;
+	private String article;
+	private String img;
+	private String comment;
+	
+	
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String tComment) {
+		this.comment = tComment;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String tImg) {
+		this.img = tImg;
+	}
+
+	public String getArticle() {
+		return article;
+	}
+
+	public void setArticle(String tArticle) {
+		this.article = tArticle;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String tTitle) {
+		this.title = tTitle;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String tContent) {
+		this.content = tContent;
+	}
+
 	public String getKind() {
 		return kind;
 	}
 
-	public void setTkind(String Tkind) {
-		this.kind = Tkind;
+	public void setTkind(String tKind) {
+		this.kind = tKind;
 	}
-
-	public ProjectVO(String tId, String tPwd)
-	{
-		this.id = tId;
-		this.pwd = tPwd;
-	}
-	
 	public String getId() {
 		return id;
 	}

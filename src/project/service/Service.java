@@ -21,4 +21,19 @@ public class Service {
 		return dao.login(id,pwd, kind);
 		
 	}
+	public void writearticle(ProjectVO vo) {
+		// TODO Auto-generated method stub
+		dao.writearticle(vo);
+	}
+	public ProjectVO show(String article) {
+		// TODO Auto-generated method stub
+		ProjectVO vo = dao.show(article);
+		
+		return vo;
+	}
+	public void comment(ProjectVO vo) {
+		// TODO Auto-generated method stub
+		dao.comment(vo);
+		
+	}
 }

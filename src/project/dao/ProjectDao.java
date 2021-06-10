@@ -126,6 +126,74 @@ public class ProjectDao {
 		}
 		return result;
 	}
-	
 
+	public void writearticle(ProjectVO vo) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try
+		{
+			conn = connect();
+			pstmt = conn.prepareStatement("insert into article(title, content) values(?,?)");
+			pstmt.setString(1, vo.getTitle());
+			pstmt.setString(2, vo.getContent());
+			pstmt.executeUpdate();
+		}catch(Exception e)
+		{
+			System.out.println("WriteArticle error" + e);
+		}finally
+		{
+			close(conn, pstmt);
+		}
+	}
+
+	public ProjectVO show(String article) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ProjectVO vo = null;
+		try
+		{
+			conn = connect();
+			pstmt = conn.prepareStatement("select * from article where art_id = ?;");
+			pstmt.setString(1, article);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+			{
+				vo = new ProjectVO();
+				vo.setTitle(rs.getString(2));
+				vo.setContent(rs.getString(3));
+			}
+		}catch(Exception e) {
+			System.out.println("Show error" + e);
+		}finally
+		{
+			close(conn, pstmt, rs);
+		}
+		
+		return vo;
+	}
+
+	public void comment(ProjectVO vo) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try
+		{
+			conn = connect();
+			pstmt = conn.prepareStatement("insert into comment(mem_id, arti_id, content) values(?,?,?)");
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(2, vo.getArticle());
+			pstmt.setString(3, vo.getComment());
+			pstmt.executeUpdate();
+		}catch(Exception e)
+		{
+			System.out.println("WriteArticle error" + e);
+		}finally
+		{
+			close(conn, pstmt);
+		}
+	}
+	
 }

@@ -38,7 +38,7 @@ input {
 <body>
 	<div id = "container">
 		<h1>NAVER</h1>
-		<form action = "login.do" method = "put">
+		<form action = "login.do" method = "post">
 			<fieldset>
 			<ul>
 				<div>
