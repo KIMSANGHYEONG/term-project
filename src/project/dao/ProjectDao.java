@@ -70,7 +70,6 @@ public class ProjectDao {
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getPwd());
 			pstmt.executeUpdate();
-			
 		}catch(Exception e)
 		{
 			System.out.println("join error" + e);
@@ -81,7 +80,7 @@ public class ProjectDao {
 		}
 	}
 
-	public boolean login(String id, String pwd) {
+	public boolean login(String id, String pwd, String kind) {
 		// TODO Auto-generated method stub
 		boolean result = false;
 		Connection conn = null;
@@ -89,18 +88,34 @@ public class ProjectDao {
 		ResultSet rs = null;
 		try 
 		{ 
-			conn = connect();
-			pstmt = conn.prepareStatement("select * from info where id  = ? and pwd = ?");
-			pstmt.setString(1, id);
-			pstmt.setString(2, pwd);
-			rs = pstmt.executeQuery();
-			if(rs.next())
+			if(kind.equals("user"))
 			{
-				result = true;
+				conn = connect();
+				pstmt = conn.prepareStatement("select * from info where id  = ? and pwd = ?");
+				pstmt.setString(1, id);
+				pstmt.setString(2, pwd);
+				rs = pstmt.executeQuery();
+				if(rs.next())
+				{
+					result = true;
+				}
+				else
+					result = false;
 			}
 			else
-				result = false;
-			
+			{
+				conn = connect();
+				pstmt = conn.prepareStatement("select * from admin where id  = ? and pwd = ?");
+				pstmt.setString(1, id);
+				pstmt.setString(2, pwd);
+				rs = pstmt.executeQuery();
+				if(rs.next())
+				{
+					result = true;
+				}
+				else
+					result = false;
+			}
 		}catch(Exception e)
 		{
 			System.out.println("join error" + e);

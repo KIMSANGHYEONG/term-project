@@ -16,21 +16,41 @@ public class LoginController implements Controller {
 		// TODO Auto-generated method stub
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
+		String kind = request.getParameter("kind");
 		
 		Service s = Service.getInstance();
-		boolean result = s.login(id,pwd);
+		boolean result = s.login(id,pwd, kind);
 		String path = null;
-		if(result)
+		
+		if(kind.equals("user"))
 		{
-			HttpSession session = request.getSession();
-			session.setAttribute("id", id);
-			path = "/index2.jsp";
+			if(result)
+			{
+				HttpSession session = request.getSession();
+				session.setAttribute("id", id);
+				path = "/index2.jsp";
+			}
+			else
+			{
+				path = "/index.jsp";
+			}
+			HttpUtil.forward(request, response, path);
 		}
 		else
 		{
-			path = "/login.jsp";
+			if(result)
+			{
+				HttpSession session = request.getSession();
+				session.setAttribute("id", id);
+				path = "/admin.jsp";
+			}
+			else
+			{
+				path = "/index.jsp";
+			}
+			HttpUtil.forward(request, response, path);
 		}
-		HttpUtil.forward(request, response, path);
+	
 	}
 
 }

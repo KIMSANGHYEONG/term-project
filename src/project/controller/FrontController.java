@@ -17,6 +17,7 @@ public class FrontController extends HttpServlet{
 		map = new HashMap<String, Controller>();
 		map.put("/join.do", new JoinController());
 		map.put("/login.do", new LoginController());
+		map.put("/comment.do", new CommentController());
 	}
 	
 	@Override

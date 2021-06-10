@@ -3,6 +3,15 @@ package project.vo;
 public class ProjectVO {
 	private String id;
 	private String pwd;
+	private String kind;
+	public String getKind() {
+		return kind;
+	}
+
+	public void setTkind(String Tkind) {
+		this.kind = Tkind;
+	}
+
 	public ProjectVO(String tId, String tPwd)
 	{
 		this.id = tId;

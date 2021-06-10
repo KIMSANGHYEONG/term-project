@@ -1,62 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset = 'utf-8'>
+<meta charset ='utf-8'>
+<title>로그인</title>
 <style>
-	header {
-		background-color : #2565d0;
-		height : 50px;
-	}
-	#logo{
-		float : left;
-		color : white;
-		font-size : 30px;
-		height : 50px;
-	}
-	#top {
-		float : right;
-		font-size : 15px;
-		height : 50px;
-		margin-top : 10px;
-		color : white;
-	}
-	#menu {
-		height : 50px;
-		font-size : 20px;
-	}
-	#menu2{
-		margin-left : 20px;
-	}
-	#article {
-		border : solid;
-		height : 150px;
-		margin-top : 10px;
-	}
+
+h1 {
+	color : green;
+}
+#container {
+	width : 400px;
+	margin : 10px auto;
+	text-align : center;
+
+}
+ul div{
+	margin-left : auto;
+
+}
+
+input {
+	font-size : 15px;
+	width : 180px;
+	height:30px;
+	margin : 10px auto;
+}
+#radio
+{
+  width : 100px;
+  height : 10px;
+
+}
 </style>
 </head>
 <body>
-	<header>
-		<div id = 'logo'><b>NAVER SPORTS</b></div>
-		<div id = 'top'> <a href = "login.jsp">로그인</a> | <a href = "join.jsp">회원가입</a></div>
-	</header>
-	<div id = 'menu'> <a href = 'index.jsp'> 스포츠홈 </a>  		
-					  <a id = 'menu2' href = "baseball.jsp"> 야구 </a> 
-					  <a id = 'menu2' href = "worldbaseball.jsp"> 해외야구 </a> 
-					  <a id = 'menu2' href = "soccer.jsp"> 축구 </a> 
-					  <a id = 'menu2' href = "worldsoccer.jsp"> 해외축구 </a>  
-					  <a id = 'menu2' href = "etc.jsp"> 기타 </a>
-	</div>
-	<div id = 'article'>
-	</div>
-	<div id = 'article'>
-	</div>
-	<div id = 'article'>
-	</div>
-	<div id = 'article'>
-	</div>
-	<div id = 'article'>
+	<div id = "container">
+		<h1>NAVER</h1>
+		<form action = "login.do" method = "put">
+			<fieldset>
+			<ul>
+				<div>
+					<input type = "text" name = "id" placeholder = "아이디" required>
+				</div>
+				<div>
+					<input type = "password" name = "pwd" placeholder="비밀번호 " required>
+				</div>
+			</ul>	
+			<input id = "radio" type = "radio" name= "kind" value = "admin">Admin
+   		   	<input id = "radio" type = "radio" name= "kind" value = "user">User
+			<div>
+				<input type = "submit" value = "로그인"><div><a href = "join.jsp">회원가입</a></div>
+			</div>
+			</fieldset>
+		</form>
 	</div>
 </body>
-</html>

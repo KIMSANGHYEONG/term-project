@@ -15,10 +15,10 @@ public class Service {
 		// TODO Auto-generated method stub
 		dao.join(vo);
 	}
-	public boolean login(String id, String pwd) {
+	public boolean login(String id, String pwd, String kind) {
 		
 		// TODO Auto-generated method stub
-		return dao.login(id,pwd);
+		return dao.login(id,pwd, kind);
 		
 	}
 }
