@@ -10,22 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 import project.service.Service;
 import project.vo.ProjectVO;
 
-public class ShowArticleController implements Controller {
+public class CommentDeleteController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String article = request.getParameter("article");
 		
 		Service service = Service.getInstance();
-		ProjectVO vo = service.show(article);
-		ArrayList<ProjectVO> commentlist = service.commentlist(article);
 		
-		request.setAttribute("article", article);
-		if(vo == null) request.setAttribute("result", "No!");
-		request.setAttribute("commentlist", commentlist);
-		request.setAttribute("vo", vo);
-		HttpUtil.forward(request, response, "/showarticle.jsp");
+		ArrayList<ProjectVO> commentlistall = service.commentlistall();
+		
+		request.setAttribute("commentlistall", commentlistall);
+		HttpUtil.forward(request, response, "/commentdelete.jsp");
+		
 	}
 
 }

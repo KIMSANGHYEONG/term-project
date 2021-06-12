@@ -8,8 +8,8 @@
 </head>
 <style>
 textarea {
-	width : 500px;
-	height : 100px;
+	width : 1000px;
+	height : 500px;
 	resize : none;
 }
 </style>
@@ -18,7 +18,6 @@ textarea {
 <form action = "writearticle.do" method = "post">
 title : <input type = "text" name = "title"><br><br>
 content : <textarea name = "content"></textarea><br>
-
 <input type = "submit" value = "등록">
 </form>
 </body>

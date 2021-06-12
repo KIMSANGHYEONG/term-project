@@ -9,8 +9,17 @@ public class ProjectVO {
 	private String article;
 	private String img;
 	private String comment;
+	private int cid;
 	
 	
+	public int getCid() {
+		return cid;
+	}
+
+	public void setCid(int tCid) {
+		this.cid = tCid;
+	}
+
 	public String getComment() {
 		return comment;
 	}

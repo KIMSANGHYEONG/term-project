@@ -1,5 +1,7 @@
 package project.service;
 
+import java.util.ArrayList;
+
 import project.dao.ProjectDao;
 import project.vo.ProjectVO;
 
@@ -31,9 +33,19 @@ public class Service {
 		
 		return vo;
 	}
-	public void comment(ProjectVO vo) {
+	public void comment(ProjectVO vos) {
 		// TODO Auto-generated method stub
-		dao.comment(vo);
-		
+		dao.comment(vos);
+	}
+	public ArrayList<ProjectVO> commentlist(String article) {
+		return dao.commentlist(article);
+	}
+	
+	public ArrayList<ProjectVO> commentlistall(){
+		return dao.commentlistall();
+	}
+	public void delete(String cid) {
+		// TODO Auto-generated method stub
+		dao.delete(cid);
 	}
 }

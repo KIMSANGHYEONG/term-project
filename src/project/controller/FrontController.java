@@ -20,6 +20,8 @@ public class FrontController extends HttpServlet{
 		map.put("/comment.do", new CommentController());
 		map.put("/writearticle.do", new WriteArticleController());
 		map.put("/showarticle.do", new ShowArticleController());
+		map.put("/commentdelete.do", new CommentDeleteController());
+		map.put("/delete.do", new DeleteController());
 	}
 	
 	@Override
@@ -33,10 +35,6 @@ public class FrontController extends HttpServlet{
 		cont.execute(req, resp);
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
-	}
+	
 
 }

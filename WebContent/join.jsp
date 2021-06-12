@@ -4,13 +4,50 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
+<style>
+
+h1 {
+	color : green;
+}
+#container {
+	width : 400px;
+	margin : 10px auto;
+	text-align : center;
+
+}
+ul div{
+	margin-left : auto;
+
+}
+
+input {
+	font-size : 15px;
+	width : 180px;
+	height:30px;
+	margin : 10px auto;
+}
+</style>
 </head>
 <body>
-	<form action = "join.do" method = "put">
-	ID : <input type = "text" required name = "id" /><br>
-	PASSWORD : <input type = "password" required name = "pwd" /><br>
-	<input type="submit" value="JOIN">
-	</form>
+<div id = "container">
+		<h1>NAVER</h1>
+		<form action = "join.do" method = "post">
+			<fieldset>
+			<ul>
+				<div>
+					ID : <input type = "text" required name = "id" />
+				</div>
+				<div>
+					PASSWORD : <input type = "password" required name = "pwd" />
+				</div>
+			</ul>	
+			<div>
+				<input type = "submit" value = "join">
+			</div>
+			</fieldset>
+		</form>
+	</div>
+
 </body>
 </html>

@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import com.mysql.cj.protocol.Resultset;
 
 import project.vo.ProjectVO;
 
@@ -175,7 +178,7 @@ public class ProjectDao {
 		return vo;
 	}
 
-	public void comment(ProjectVO vo) {
+	public void comment(ProjectVO vos) {
 		// TODO Auto-generated method stub
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -183,17 +186,97 @@ public class ProjectDao {
 		{
 			conn = connect();
 			pstmt = conn.prepareStatement("insert into comment(mem_id, arti_id, content) values(?,?,?)");
-			pstmt.setString(1, vo.getId());
-			pstmt.setString(2, vo.getArticle());
-			pstmt.setString(3, vo.getComment());
+			pstmt.setString(1, vos.getId());
+			pstmt.setString(2, vos.getArticle());
+			pstmt.setString(3, vos.getComment());
 			pstmt.executeUpdate();
 		}catch(Exception e)
 		{
-			System.out.println("WriteArticle error" + e);
+			System.out.println("comment error" + e);
 		}finally
 		{
 			close(conn, pstmt);
 		}
 	}
+	public ArrayList<ProjectVO> commentlist(String article) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ProjectVO projectvo = null;
+		ArrayList<ProjectVO> commentlist = new ArrayList<ProjectVO>();
+		try
+		{
+			conn = connect();
+			pstmt = conn.prepareStatement("select * from comment where arti_id = ?;");
+			pstmt.setString(1, article);
+			rs = pstmt.executeQuery();
+			while(rs.next())
+			{
+				projectvo = new ProjectVO();
+				projectvo.setCid(rs.getInt(1));
+				projectvo.setId(rs.getString(2));
+				projectvo.setArticle(rs.getString(3));
+				projectvo.setComment(rs.getString(4));
+				commentlist.add(projectvo);
+			}
+		}catch(Exception e) {
+			System.out.println("commentlist error" + e);
+		}finally
+		{
+			close(conn, pstmt, rs);
+		}
+		return commentlist;
+	}
+	
+	public ArrayList<ProjectVO> commentlistall() {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ProjectVO projectvo = null;
+		ArrayList<ProjectVO> commentlistall = new ArrayList<ProjectVO>();
+		try
+		{
+			conn = connect();
+			pstmt = conn.prepareStatement("select * from comment order by arti_id asc");
+			rs = pstmt.executeQuery();
+			while(rs.next())
+			{
+				projectvo = new ProjectVO();
+				projectvo.setCid(rs.getInt(1));
+				projectvo.setId(rs.getString(2));
+				projectvo.setArticle(rs.getString(3));
+				projectvo.setComment(rs.getString(4));
+				commentlistall.add(projectvo);
+			}
+		}catch(Exception e) {
+			System.out.println("commentlistall error" + e);
+		}finally
+		{
+			close(conn, pstmt, rs);
+		}
+		return commentlistall;
+	}
+
+	public void delete(String cid) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try
+		{
+			conn = connect();
+			pstmt = conn.prepareStatement("delete from comment where id = ?");
+			pstmt.setString(1, cid);
+			pstmt.executeUpdate();
+		}catch(Exception e)
+		{
+			System.out.println("delete error" + e);
+		}finally
+		{
+			close(conn, pstmt);
+		}
+	}
+	
 	
 }

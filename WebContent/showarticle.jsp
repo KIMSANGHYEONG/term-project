@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.util.ArrayList" %>
+<%@ page import = "project.dao.ProjectDao" %>
+<%@ page import = "project.vo.ProjectVO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +49,10 @@
 		height : 100px;
 		resize : none;
 	}
-	
+	p {
+		height : 40px;
+		border-bottom : solid 1px green;
+	}
 </style>
 </head>
 <body>
@@ -62,8 +68,9 @@
 			  <a id = 'menu2' href = "etc.jsp"> 기타 </a>
 </div>
 <section>
-<%response.setContentType("text/html;charset=utf-8"); %>
-<form action = "comment.do" method = "put">
+<%response.setContentType("text/html;charset=utf-8"); 
+	ArrayList<ProjectVO> commentlist = (ArrayList<ProjectVO>)request.getAttribute("commentlist");%>
+
 	<%
 	String result = (String)request.getAttribute("result");
 	if( result != null) {
@@ -71,12 +78,33 @@
 	}else{
 	%>
 	<div id = "main" ><h2>${vo.title}</h2></div>
+	<div id = "main"><img src = "img/${article}.jpg"></div>
 	<div id ='main'>${vo.content}</div>
+<form action = "comment.do" method = "put">
 	<textarea name = "comment"></textarea>
 	<input type = "submit" value = "등록">
-</form>
+	<input type="hidden" name="article" value="${article}">
+</form>	
+
+<%
+	for(int i = 0 ; i<commentlist.size(); i++)
+		{
+			ProjectVO vo = commentlist.get(i);
+			String id = vo.getId();
+			String article = vo.getArticle();
+			String comment = vo.getComment();%>
+			
+			<p>
+			ID : <%= id %> <br>
+			Comment : <%= comment %>
+	<%}
+		
+		
+	}
+%>
 </section>
-<%} %>
+
+
 
 </body>
 </html>
